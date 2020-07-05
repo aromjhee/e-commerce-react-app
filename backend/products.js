@@ -9,6 +9,7 @@ export const data = {
     brand: 'Nike',
     rating: 4.5,
     numReviews: 10,
+    countInStock: 0,
   },
   {
     id: 2,
@@ -19,6 +20,7 @@ export const data = {
     brand: 'Nike',
     rating: 5,
     numReviews: 100,
+    countInStock: 10,
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ export const data = {
     brand: 'Nike',
     rating: 3.5,
     numReviews: 1000,
+    countInStock: 3,
   }
 ]
 }
