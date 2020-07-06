@@ -9,6 +9,14 @@ body {
   margin: 0;
 }
 
+button {
+  font-size: 1.6rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
 #root {
   height: 100%;
 }
@@ -253,7 +261,7 @@ a:hover {
 .cart-list-container li {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-bottom: 1rem;
   border-bottom: .1rem #808080 solid;
 }
@@ -275,6 +283,7 @@ a:hover {
 
 .cart-name {
   flex: 8 1;
+  margin-left: 2rem;
 }
 
 .cart-price {
