@@ -20,7 +20,7 @@ router.get('/createadmin', async (req, res) => {
   }
 });
 
-router.post('/sign-in', async (req, res) => {
+router.post('/log-in', async (req, res) => {
   const { email, password } = req.body;
 
   const logInUser = await User.findOne({
@@ -35,10 +35,28 @@ router.post('/sign-in', async (req, res) => {
       name,
       email,
       isAdmin,
-      token: getToken(user)
+      token: getToken(logInUser)
     })
   } else {
     res.status(401).send({ msg: 'Invalid Email or Password' })
+  }
+});
+
+router.post('/register', async (req, res) => {
+  const { name, email, password } = req.body;
+  const user = new User({ name, email, password });
+  const newUser = await user.save();
+  if (newUser) {
+    const { id, name, email, isAdmin } = newUser;
+    res.send({
+      id,
+      name,
+      email,
+      isAdmin,
+      token: getToken(newUser)
+    });
+  } else {
+    res.status(401).send({ msg: 'Invalid User.' })
   }
 });
 

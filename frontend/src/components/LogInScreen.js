@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logIn } from '../actions/userActions';
-
-// import { detailsUser } from '../actions/userActions';
 
 const LoginScreen = props => {
   const [email, setEmail] = useState('');
@@ -16,7 +14,7 @@ const LoginScreen = props => {
     if (userInfo) {
       props.history.push('/');
     }
-  }, [userInfo]);
+  }, [userInfo, props.history]);
 
   const submitHandler = e => {
     e.preventDefault();
