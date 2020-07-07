@@ -9,6 +9,9 @@ import CartScreen from './components/CartScreen';
 import LoginScreen from './components/LogInScreen';
 import RegisterScreen from './components/RegisterScreen';
 import NewProductScreen from './components/NewProductScreen';
+import ShippingScreen from './components/ShippingScreen';
+import PaymentScreen from './components/PaymentSreen';
+import PlaceOrderScreen from './components/PlaceOrderScreen';
 
 const App = () => {
   const openMenu = () => {
@@ -57,6 +60,9 @@ const App = () => {
           <div className="content">
             <Route exact path='/' component={HomeScreen}></Route>
             <Route path='/products' component={NewProductScreen}></Route>
+            <Route path='/shipping' component={ShippingScreen}></Route>
+            <Route path='/payment' component={PaymentScreen}></Route>
+            <Route path='/place-order' component={PlaceOrderScreen}></Route>
             <Route path='/log-in' component={LoginScreen}></Route>
             <Route path='/register' component={RegisterScreen}></Route>
             <Route path='/cart/:id?' component={CartScreen}></Route>
