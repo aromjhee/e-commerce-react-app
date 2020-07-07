@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import config from './config';
 import { data } from './products';
 import userRoutes from './routes/userRoutes';
+import productRoutes from './routes/productRoutes';
 
 dotenv.config();
 
@@ -20,17 +21,18 @@ const app = express();
 
 app.use(bodyParser.json())
 app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
 
-app.get('/api/products/:id', (req, res) => {
-  const productId = req.params.id;
-  const product = data.products.find(x => x.id === Number.parseInt(productId));
-  if (product) res.send(product);
-  else res.send(404).send({ msg: 'Product Not Found.' });
-});
+// app.get('/api/products/:id', (req, res) => {
+//   const productId = req.params.id;
+//   const product = data.products.find(x => x.id === Number.parseInt(productId));
+//   if (product) res.send(product);
+//   else res.send(404).send({ msg: 'Product Not Found.' });
+// });
 
-app.get('/api/products', (req, res) => {
-  res.send(data.products);
-});
+// app.get('/api/products', (req, res) => {
+//   res.send(data.products);
+// });
 
 
 app.listen(8080, () => console.log('listening to port 8080...'))
