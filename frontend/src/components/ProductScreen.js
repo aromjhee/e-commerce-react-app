@@ -57,7 +57,7 @@ const ProductScreen = props => {
                 Price: ${product.price}
               </li>
               <li>
-                    Status: {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                Status: {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
               </li>
               <li>
                 Qty: 

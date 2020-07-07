@@ -17,7 +17,7 @@ const CartScreen = props => {
   }
 
   const checkoutHandler = () => {
-    props.history.push('/signin?redirect=shipping');
+    props.history.push('/log-in?redirect=shipping');
   }
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const CartScreen = props => {
               <div>Cart is Empty</div>
             ) :
             cartItems.map(item => (
-              <li key={item.product}>
+              <li key={item.name}>
                 <div className='cart-image'>
                   <img src={item.image} alt='product' />
                 </div>
@@ -52,10 +52,10 @@ const CartScreen = props => {
                   <div> Qty: 
                     <select 
                       value={item.qty} 
-                      onChange={e => dispatch(addToCart(item.product, e.target.value))}>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
+                      onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
+                        {[...Array(item.countInStock).keys()].map(x =>
+                          <option key={x + 1} value={x + 1}>{x + 1}</option>
+                        )}
                     </select>
                     <button 
                       type='button'

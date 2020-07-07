@@ -8,13 +8,16 @@ const LoginScreen = props => {
   const [password, setPassword] = useState('');
   const userLogin = useSelector(state => state.userLogin)
   const { loading, userInfo, error } = userLogin;
+
   const dispatch = useDispatch();
 
+  const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
+  
   useEffect(() => {
     if (userInfo) {
-      props.history.push('/');
+      props.history.push(redirect);
     }
-  }, [userInfo, props.history]);
+  }, [userInfo, props.history, redirect]);
 
   const submitHandler = e => {
     e.preventDefault();
@@ -54,7 +57,7 @@ const LoginScreen = props => {
           <li>New to Imma-Zone?</li>
           <li>
             <Link 
-              to='/register' 
+              to={redirect === '/' ? 'register' : `register?redirect=${redirect}`}
               className='button text-center secondary'>
                   Create your Imma-zone account
             </Link>
