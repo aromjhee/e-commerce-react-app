@@ -49,10 +49,10 @@ const App = () => {
           <button className="sidebar-close-button" onClick={closeMenu}>X</button>
           <ul>
             <li>
-              <a href="index.html">Pants</a>
+              <a href="index.html">Shoes</a>
             </li>
             <li>
-              <a href="index.html">Shirts</a>
+              <a href="index.html">More Shoes</a>
             </li>
           </ul>
         </aside>

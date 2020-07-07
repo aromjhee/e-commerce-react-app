@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import CheckoutSteps from './CheckoutSteps';
 
@@ -20,13 +20,9 @@ const PlaceOrderScreen = props => {
   const taxPrice = 0.15 * itemsPrice;
   const totalPrice = itemsPrice + shippingPrice + taxPrice;
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const placeOrderHandler = () => {
-    // TODO
-  }
-
-  const checkoutHandler = () => {
     // TODO
   }
 
