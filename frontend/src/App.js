@@ -29,7 +29,7 @@ const App = () => {
           <div className="brand">
             <button onClick={openMenu}>
               &#9776;
-          </button>
+            </button>
             <Link to='/'>imma-zone</Link>
           </div>
           <div className="header-links">
@@ -60,7 +60,7 @@ const App = () => {
             <Route path='/log-in' component={LoginScreen}></Route>
             <Route path='/register' component={RegisterScreen}></Route>
             <Route path='/cart/:id?' component={CartScreen}></Route>
-            <Route path='/products/:id' component={ProductScreen}></Route>
+            <Route path='/product/:id' component={ProductScreen}></Route>
           </div>
         </main>
         <footer className="footer">

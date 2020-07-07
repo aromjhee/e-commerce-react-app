@@ -1,4 +1,4 @@
-const { PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL } = require("../constant/productConstants")
+const { PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL } = require("../constant/productConstants")
 
 const listProducts = () => async dispatch => {
   try {
@@ -18,18 +18,35 @@ const saveProduct = product => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
     const { userLogin: { userInfo } } = getState();
 
-    const res = await fetch('/api/products', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${userInfo.token}`
-      },
-      body: JSON.stringify(product)
-    });
+    let res;
 
-    if (res.ok) {
-      const data = await res.json();
-      dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+    if (!product._id) {
+      res = await fetch('/api/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${userInfo.token}`
+        },
+        body: JSON.stringify(product)
+      });
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+      }
+    } else {
+      res = await fetch(`/api/products/${product._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${userInfo.token}`
+        },
+        body: JSON.stringify(product)
+      });
+      
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+      }
     }
   } catch(e) {
     dispatch({ type: PRODUCT_SAVE_FAIL, payload: e.message });
@@ -49,4 +66,24 @@ const detailsProducts = (productId) => async dispatch => {
   }
 }
 
-export { listProducts, detailsProducts, saveProduct };
+const deleteProduct = (productId) => async (dispatch, getState) => {
+  try {
+    const { userLogin: { userInfo } } = getState();
+
+    dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
+    const res = await fetch(`/api/products/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${userInfo.token}`
+      },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: data, success: true })
+    }
+  } catch (error) {
+    dispatch({ type: PRODUCT_DELETE_FAIL, payload: error.message })
+  }
+}
+
+export { listProducts, detailsProducts, saveProduct, deleteProduct };
