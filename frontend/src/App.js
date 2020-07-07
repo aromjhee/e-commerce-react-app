@@ -12,6 +12,7 @@ import NewProductScreen from './components/NewProductScreen';
 import ShippingScreen from './components/ShippingScreen';
 import PaymentScreen from './components/PaymentSreen';
 import PlaceOrderScreen from './components/PlaceOrderScreen';
+import ProfileScreen from './components/ProfileScreen';
 
 const App = () => {
   const openMenu = () => {
@@ -36,7 +37,8 @@ const App = () => {
             <Link to='/'>imma-zone</Link>
           </div>
           <div className="header-links">
-            <a href="cart.html">Cart</a>
+            <Link to='/products'>Create</Link>
+            <Link to='/cart/:id?'>Cart</Link>
             {
               userInfo ? 
               <Link to='/profile'>{userInfo.name}</Link> :
@@ -60,6 +62,7 @@ const App = () => {
           <div className="content">
             <Route exact path='/' component={HomeScreen}></Route>
             <Route path='/products' component={NewProductScreen}></Route>
+            <Route path='/profile' component={ProfileScreen}></Route>
             <Route path='/shipping' component={ShippingScreen}></Route>
             <Route path='/payment' component={PaymentScreen}></Route>
             <Route path='/place-order' component={PlaceOrderScreen}></Route>

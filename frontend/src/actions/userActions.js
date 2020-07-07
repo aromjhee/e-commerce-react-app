@@ -1,5 +1,5 @@
 import Cookie from 'js-cookie';
-import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL } from '../constant/userConstants';
+import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT_SUCCESS } from '../constant/userConstants';
 
 const logIn = (email, password) => async dispatch => {
   dispatch({ type: USER_LOGIN_REQUEST, payload: {email, password}});
@@ -19,6 +19,11 @@ const logIn = (email, password) => async dispatch => {
   } catch(e) {
     dispatch({ type: USER_LOGIN_FAIL, payload: e.message });
   }
+};
+
+const logOut = () => dispatch => {
+  dispatch({ type: USER_LOGOUT_SUCCESS });
+  Cookie.remove('userInfo');
 };
 
 const register = (name, email, password) => async dispatch => {
@@ -41,4 +46,4 @@ const register = (name, email, password) => async dispatch => {
   }
 };
 
-export { logIn, register };
+export { logIn, register, logOut };

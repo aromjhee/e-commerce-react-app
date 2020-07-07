@@ -440,3 +440,8 @@ tbody > tr:nth-child(odd) {
   font-weight: bold;
   color: #c04000;
 }
+
+/* Profile */
+.profile {
+  margin-left: 1rem;
+}
