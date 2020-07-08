@@ -1,8 +1,9 @@
 import proxy from "http-proxy-middleware";
-import { PORT } from '../backend/config.js';
+import { PORT } from '../../backend/config.js';
 
-const app = (app) => {
+const proxyApp = (app) => {
+  
   app.use(proxy("/api/*", { target: `http://localhost:${PORT}/` }));
 };
 
-export default app;
+export default proxyApp;
