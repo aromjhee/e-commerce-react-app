@@ -35,5 +35,5 @@ app.use('/api/products', productRoutes);
 //   res.send(data.products);
 // });
 
-
-app.listen(8080, () => console.log('listening to port 8080...'))
+const port = config.PORT;
+app.listen(port, () => console.log(`listening to port ${port}...`))
