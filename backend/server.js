@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-const path = require('path');
+import * as path from 'path';
 
 import config from './config.js';
 import { data } from './products.js';
