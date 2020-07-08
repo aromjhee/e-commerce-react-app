@@ -2,7 +2,8 @@
   "name": "e-commerce-react-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "backend/server.js",
+  "type": "module",
   "dependencies": {
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
@@ -20,7 +21,7 @@
   },
   "scripts": {
     "start:development": "nodemon --watch backend --exec babel-node backend/server.js",
-    "start": "node backend/server.js"
+    "start": "babel-node backend/server.js"
   },
   "repository": {
     "type": "git",
