@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start:development": "nodemon --watch backend --exec babel-node backend/server.js",
-    "start": "babel-node backend/server.js"
+    "start": "node backend/server.js"
   },
   "repository": {
     "type": "git",

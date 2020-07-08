@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import config from './config';
+import config from './config.js';
 
 const getToken = user => {
   const { id, name, email, isAdmin } = user;

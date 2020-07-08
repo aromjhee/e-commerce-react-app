@@ -3,10 +3,10 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
-import config from './config';
-import { data } from './products';
-import userRoutes from './routes/userRoutes';
-import productRoutes from './routes/productRoutes';
+import config from './config.js';
+import { data } from './products.js';
+import userRoutes from './routes/userRoutes.js';
+import productRoutes from './routes/productRoutes.js';
 
 dotenv.config();
 
