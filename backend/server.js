@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+const path = require('path');
 
 import config from './config.js';
 import { data } from './products.js';
@@ -11,7 +12,7 @@ import productRoutes from './routes/productRoutes.js';
 dotenv.config();
 
 const mongodbUrl = config.MONGODB_URL;
-console.log(mongodbUrl)
+
 mongoose.connect(mongodbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -20,7 +21,13 @@ mongoose.connect(mongodbUrl, {
 
 const app = express();
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+// Anything that doesn't match the above, send back index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
+})
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 

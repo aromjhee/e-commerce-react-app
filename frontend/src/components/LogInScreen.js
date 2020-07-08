@@ -18,7 +18,7 @@ const LoginScreen = props => {
       props.setStateUserLogin(userInfo);
       props.history.push(redirect);
     }
-  }, [userInfo, props.history, redirect]);
+  }, [userInfo, props.history, redirect, props]);
 
   const submitHandler = e => {
     e.preventDefault();

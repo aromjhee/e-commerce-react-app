@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import Cookie from 'js-cookie';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { logOut } from '../actions/userActions';
 
 const ProfileScreen = (props) => {
