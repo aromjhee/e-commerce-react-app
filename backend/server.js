@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import * as path from 'path';
+import path from 'path';
 
 import config from './config.js';
 import { data } from './products.js';
@@ -20,6 +20,7 @@ mongoose.connect(mongodbUrl, {
 }).catch(error => console.log(error.reason));
 
 const app = express();
+const __dirname = path.resolve();
 
 app.use(bodyParser.json());
 // Serve static files from the React frontend app
