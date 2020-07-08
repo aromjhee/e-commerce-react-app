@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 import path from 'path';
 
 import config from './config.js';
-import { data } from './products.js';
 import userRoutes from './routes/userRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 
