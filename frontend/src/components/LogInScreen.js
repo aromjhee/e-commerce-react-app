@@ -15,6 +15,7 @@ const LoginScreen = props => {
   
   useEffect(() => {
     if (userInfo) {
+      props.setStateUserLogin(userInfo);
       props.history.push(redirect);
     }
   }, [userInfo, props.history, redirect]);

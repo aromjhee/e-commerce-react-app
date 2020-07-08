@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Cookie from 'js-cookie';
 
 import HomeScreen from './components/HomeScreen';
 import ProductScreen from './components/ProductScreen';
@@ -15,6 +16,16 @@ import PlaceOrderScreen from './components/PlaceOrderScreen';
 import ProfileScreen from './components/ProfileScreen';
 
 const App = () => {
+  let userCookie;
+  
+  if (Cookie.get('userInfo')) {
+    userCookie = JSON.parse(Cookie.get('userInfo'));
+  } else {
+    userCookie = {};
+  }
+
+  const [stateUserLogin, setStateUserLogin] = useState(userCookie);
+
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open")
   }
@@ -24,7 +35,9 @@ const App = () => {
   }
 
   const userLogin = useSelector(state => state.userLogin);
-  const { userInfo } = userLogin;
+  if (!stateUserLogin) {
+    setStateUserLogin(userLogin);
+  }
 
   return (
     <BrowserRouter>
@@ -37,11 +50,15 @@ const App = () => {
             <Link to='/'>imma-zone</Link>
           </div>
           <div className="header-links">
-            <Link to='/products'>Create</Link>
+            {
+              stateUserLogin.isAdmin ?
+              <Link to='/products'>Create</Link> :
+              null
+            }
             <Link to='/cart/:id?'>Cart</Link>
             {
-              userInfo ? 
-              <Link to='/profile'>{userInfo.name}</Link> :
+              Object.keys(stateUserLogin).length !== 0 ? 
+                <Link to='/profile'>{stateUserLogin.name}</Link> :
               <Link to='/log-in'>Log In</Link>
             }
           </div>
@@ -62,11 +79,19 @@ const App = () => {
           <div className="content">
             <Route exact path='/' component={HomeScreen}></Route>
             <Route path='/products' component={NewProductScreen}></Route>
-            <Route path='/profile' component={ProfileScreen}></Route>
+            <Route 
+              path='/profile' 
+              render={props => <ProfileScreen {...props}
+                setStateUserLogin={setStateUserLogin} />}>  
+            </Route>
             <Route path='/shipping' component={ShippingScreen}></Route>
             <Route path='/payment' component={PaymentScreen}></Route>
             <Route path='/place-order' component={PlaceOrderScreen}></Route>
-            <Route path='/log-in' component={LoginScreen}></Route>
+            <Route 
+              path='/log-in' 
+              render={(props) => (<LoginScreen {...props} setStateUserLogin={setStateUserLogin} 
+              />)} >
+            </Route>
             <Route path='/register' component={RegisterScreen}></Route>
             <Route path='/cart/:id?' component={CartScreen}></Route>
             <Route path='/product/:id' component={ProductScreen}></Route>
