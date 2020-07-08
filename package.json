@@ -22,7 +22,7 @@
   "scripts": {
     "start:development": "nodemon --watch backend --exec babel-node backend/server.js",
     "start": "node backend/server.js",
-    "heroku-postbuild": "cd frontend && npm install & npm run build"
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",
