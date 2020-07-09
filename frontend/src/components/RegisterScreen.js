@@ -18,9 +18,10 @@ const RegisterScreen = props => {
 
   useEffect(() => {
     if (userInfo) {
+      props.setStateUserInfo(userInfo);
       props.history.push(redirect);
     }
-  }, [userInfo, props.history, redirect]);
+  }, [userInfo, props.history, redirect, props]);
 
   const submitHandler = e => {
     e.preventDefault();

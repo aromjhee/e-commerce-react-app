@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -18,6 +18,8 @@ import ProfileScreen from './components/ProfileScreen';
 const App = () => {
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
+
+  const [stateUserInfo, setStateUserInfo] = useState(userInfo);
 
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open")
@@ -72,7 +74,12 @@ const App = () => {
             <Route path='/payment' component={PaymentScreen}></Route>
             <Route path='/place-order' component={PlaceOrderScreen}></Route>
             <Route path="/log-in" component={LoginScreen} />
-            <Route path="/register" component={RegisterScreen} />
+            <Route 
+              path="/register"
+              render={
+                props => <RegisterScreen {...props} setStateUserInfo={setStateUserInfo} />
+              } 
+            />
             <Route path='/cart/:id?' component={CartScreen}></Route>
             <Route path='/product/:id' component={ProductScreen}></Route>
           </div>
