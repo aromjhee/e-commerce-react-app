@@ -5,8 +5,9 @@ const listProducts = () => async dispatch => {
     dispatch({ type: PRODUCT_LIST_REQUEST});
     const res = await fetch('/api/products');
     if (res.ok) {
-      const data = await res.json();
-      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
+      const data = await res.text();
+      const dataJson = JSON.parse(data);
+      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: dataJson })
     }
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message })
