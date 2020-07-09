@@ -11,10 +11,10 @@ const RegisterScreen = props => {
 
   const userRegister = useSelector(state => state.userRegister)
   const { loading, userInfo, error } = userRegister;
-
-  const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
-
+  
   const dispatch = useDispatch();
+  
+  const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
 
   useEffect(() => {
     if (userInfo) {
@@ -25,7 +25,6 @@ const RegisterScreen = props => {
   const submitHandler = e => {
     e.preventDefault();
     dispatch(register(name, email, password));
-    props.setStateUserLogin(userInfo);
   }
 
   return (

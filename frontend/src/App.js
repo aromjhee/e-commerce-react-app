@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Cookie from 'js-cookie';
 import 'font-awesome/css/font-awesome.min.css';
 
 import HomeScreen from './components/HomeScreen';
@@ -17,22 +16,8 @@ import PlaceOrderScreen from './components/PlaceOrderScreen';
 import ProfileScreen from './components/ProfileScreen';
 
 const App = () => {
-  // let userCookie;
-  
-  // if (Cookie.get('userInfo')) {
-  //   userCookie = JSON.parse(Cookie.get('userInfo'));
-  // } else {
-  //   userCookie = {};
-  // }
-  // console.log('*********', userCookie)
-  // const [stateUserLogin, setStateUserLogin] = useState(userCookie);
-
   const userLogin = useSelector(state => state.userLogin);
-  const { userInfo: stateUserLogin } = userLogin;
-  console.log('--------', userLogin, '&&&&&&&&&', stateUserLogin);
-  // if (userLogin) {
-  //   setStateUserLogin(userLogin);
-  // }
+  const { userInfo } = userLogin;
 
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open")
@@ -54,14 +39,14 @@ const App = () => {
           </div>
           <div className="header-links">
             {
-              stateUserLogin && stateUserLogin.isAdmin ?
+              userInfo && userInfo.isAdmin ?
               <Link to='/products'>Create</Link> :
               null
             }
             <Link to='/cart/:id?'>Cart</Link>
             {
-              Object.keys(stateUserLogin).length !== 0 ? 
-                <Link to='/profile'>{stateUserLogin.name}</Link> :
+              userInfo ? 
+              <Link to='/profile'>{userInfo.name}</Link> :
               <Link to='/log-in'>Log In</Link>
             }
           </div>

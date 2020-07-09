@@ -19,10 +19,6 @@ const LoginScreen = props => {
     if (userInfo) {
       props.history.push(redirect);
     }
-    // if (Object.keys(userInfo).length > 0) {
-    //   props.setStateUserLogin(userInfo);
-    //   props.history.push(redirect);
-    // }
   }, [userInfo, props.history, redirect]);
 
   const submitHandler = e => {
