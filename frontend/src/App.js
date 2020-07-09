@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Cookie from 'js-cookie';
+import 'font-awesome/css/font-awesome.min.css';
 
 import HomeScreen from './components/HomeScreen';
 import ProductScreen from './components/ProductScreen';
@@ -11,20 +12,27 @@ import LoginScreen from './components/LogInScreen';
 import RegisterScreen from './components/RegisterScreen';
 import NewProductScreen from './components/NewProductScreen';
 import ShippingScreen from './components/ShippingScreen';
-import PaymentScreen from './components/PaymentSreen';
+import PaymentScreen from './components/PaymentScreen';
 import PlaceOrderScreen from './components/PlaceOrderScreen';
 import ProfileScreen from './components/ProfileScreen';
 
 const App = () => {
-  let userCookie;
+  // let userCookie;
   
-  if (Cookie.get('userInfo')) {
-    userCookie = JSON.parse(Cookie.get('userInfo'));
-  } else {
-    userCookie = {};
-  }
+  // if (Cookie.get('userInfo')) {
+  //   userCookie = JSON.parse(Cookie.get('userInfo'));
+  // } else {
+  //   userCookie = {};
+  // }
+  // console.log('*********', userCookie)
+  // const [stateUserLogin, setStateUserLogin] = useState(userCookie);
 
-  const [stateUserLogin, setStateUserLogin] = useState(userCookie);
+  const userLogin = useSelector(state => state.userLogin);
+  const { userInfo: stateUserLogin } = userLogin;
+  console.log('--------', userLogin, '&&&&&&&&&', stateUserLogin);
+  // if (userLogin) {
+  //   setStateUserLogin(userLogin);
+  // }
 
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open")
@@ -32,11 +40,6 @@ const App = () => {
 
   const closeMenu = () => {
     document.querySelector(".sidebar").classList.remove("open")
-  }
-
-  const userLogin = useSelector(state => state.userLogin);
-  if (!stateUserLogin) {
-    setStateUserLogin(userLogin);
   }
 
   return (
@@ -51,7 +54,7 @@ const App = () => {
           </div>
           <div className="header-links">
             {
-              stateUserLogin.isAdmin ?
+              stateUserLogin && stateUserLogin.isAdmin ?
               <Link to='/products'>Create</Link> :
               null
             }
@@ -79,26 +82,33 @@ const App = () => {
           <div className="content">
             <Route exact path='/' component={HomeScreen}></Route>
             <Route path='/products' component={NewProductScreen}></Route>
-            <Route 
+            {/* <Route 
               path='/profile' 
               render={props => <ProfileScreen {...props}
                 setStateUserLogin={setStateUserLogin} />}>  
-            </Route>
+            </Route> */}
+            <Route path="/profile" component={ProfileScreen} />
             <Route path='/shipping' component={ShippingScreen}></Route>
             <Route path='/payment' component={PaymentScreen}></Route>
             <Route path='/place-order' component={PlaceOrderScreen}></Route>
-            <Route 
+            {/* <Route 
               path='/log-in' 
-              render={(props) => (<LoginScreen {...props} setStateUserLogin={setStateUserLogin} 
-              />)} >
+              render={(props) => (<LoginScreen {...props} setStateUserLogin={setStateUserLogin} />)} >
             </Route>
-            <Route path='/register' component={RegisterScreen}></Route>
+            <Route 
+              path='/register' 
+              render={(props) => (<RegisterScreen {...props} setStateUserLogin={setStateUserLogin} />)} >
+            </Route> */}
+            <Route path="/log-in" component={LoginScreen} />
+            <Route path="/register" component={RegisterScreen} />
             <Route path='/cart/:id?' component={CartScreen}></Route>
             <Route path='/product/:id' component={ProductScreen}></Route>
           </div>
         </main>
         <footer className="footer">
-          All rights reserved.
+          <span>
+            <a href='https://github.com/aromjhee'>Github<i className="fa fa-github fa-2x" aria-hidden="true"></i></a>
+          </span>
         </footer>
       </div>
     </BrowserRouter>

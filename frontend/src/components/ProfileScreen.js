@@ -6,7 +6,7 @@ const ProfileScreen = (props) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    props.setStateUserLogin({});
+    // props.setStateUserLogin({});
     dispatch(logOut());
     props.history.push('/');
   }

@@ -19,9 +19,11 @@ const HomeScreen = () => {
       {products.map(product =>
         <li key={product._id}>
           <div className="product">
-            <Link to={`/product/${product._id}`}>
-              <img className="product-image" src={product.image} alt="product1" />
-            </Link>
+            <div className='product-image-div'>
+              <Link to={`/product/${product._id}`}>
+                <img className="product-image" src={product.image} alt={product._id} />
+              </Link>
+            </div>
             <div className="product-name">
               <Link to={`/product/${product._id}`}>{product.name}</Link>
             </div>

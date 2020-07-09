@@ -12,17 +12,23 @@ const LoginScreen = props => {
   const dispatch = useDispatch();
 
   const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
+
+  console.log('========', userInfo)
   
   useEffect(() => {
     if (userInfo) {
-      props.setStateUserLogin(userInfo);
       props.history.push(redirect);
     }
-  }, [userInfo, props.history, redirect, props]);
+    // if (Object.keys(userInfo).length > 0) {
+    //   props.setStateUserLogin(userInfo);
+    //   props.history.push(redirect);
+    // }
+  }, [userInfo, props.history, redirect]);
 
   const submitHandler = e => {
     e.preventDefault();
     dispatch(logIn(email, password));
+    // props.setStateUserLogin(userInfo);
   }
 
   return (
@@ -53,7 +59,8 @@ const LoginScreen = props => {
               onChange={e => setPassword(e.target.value)} />
           </li>
           <li>
-            <button type='submit' className='button primary full-width'>Log In</button>
+            <button type='submit' className='button primary full-width'>
+              Log In</button>
           </li>
           <li>New to Imma-Zone?</li>
           <li>
