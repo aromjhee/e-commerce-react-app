@@ -12,8 +12,6 @@ const LoginScreen = props => {
   const dispatch = useDispatch();
 
   const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
-
-  console.log('========', userInfo)
   
   useEffect(() => {
     if (userInfo) {
@@ -24,7 +22,6 @@ const LoginScreen = props => {
   const submitHandler = e => {
     e.preventDefault();
     dispatch(logIn(email, password));
-    // props.setStateUserLogin(userInfo);
   }
 
   return (
