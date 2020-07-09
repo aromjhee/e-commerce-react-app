@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  font: 1.6rem Helvetica;
+  font: 1.6rem 'Poppins', sans-serif;
   height: 100vh;
   margin: 0;
 }
@@ -13,7 +13,7 @@ button {
   font-size: 1.6rem;
 }
 
-.full-width {
+.full-width { /* for button */
   width: 100%;
 }
 
@@ -34,8 +34,8 @@ button {
 
 .header {
   grid-area: header;
-  background-color: #203040;
-  color: #ffffff;
+  background-color: #383e56;
+  color: #eedad1;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,24 +43,24 @@ button {
 }
 
 .brand a {
-  color: #ffffff;
+  color: white;
   font-size: 3rem;
   font-weight: bold;
   text-decoration: none;
 }
 
 .brand a:hover {
-  color: #ff8000;
+  color: #f69e7b;
 }
 
 .header-links a {
-  color: #ffffff;
+  color: white;
   text-decoration: none;
   padding: 1rem;
 }
 
 .header-links a:hover {
-  color: #ff8000;
+  color: #f69e7b;
 }
 
 .main {
@@ -81,7 +81,7 @@ a {
 }
 
 a:hover {
-  color: #ff8000;
+  color: #f69e7b;
 }
 
 /* Home Screen */
@@ -95,9 +95,9 @@ a:hover {
 .products li {
   list-style-type: none;
   padding: 0;
-  flex: 0 1 34rem;
-  margin: 1rem;
-  height: 50rem;
+  flex: 0 1 30rem;
+  margin: 2rem;
+  height: 31rem;
   border-bottom: .1rem #c0c0c0 solid;
 }
 
@@ -124,8 +124,15 @@ a:hover {
 }
 
 .product-image {
-  max-width: 34rem;
-  max-height: 34rem;
+  box-sizing: border-box;
+  max-width: 30rem;
+  max-height: 30rem;
+  border-radius: 10px;
+  transition: transform .2s;
+}
+
+.product-image:hover {
+  transform: scale(1.05);
 }
 
 .product-rating {
@@ -142,6 +149,10 @@ a:hover {
   cursor: pointer;
 }
 
+.brand button:hover {
+  color: #f69e7b;
+}
+
 .sidebar {
   position: fixed;
   transition: all .5s;
@@ -151,12 +162,30 @@ a:hover {
   height: 100%;
 }
 
+.sidebar h3 {
+  padding-left: 1rem;
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+.sidebar ul li {
+  margin: 0rem;
+  padding: .5rem;
+  transition: transform .2s;
+}
+
+.sidebar ul li:hover {
+  transform: scale(1.05);
+}
+
 .sidebar.open {
   transform: translateX(0);
 }
 
 .sidebar-close-button {
-  border-radius: 50%;
+  border-radius: 30%;
   border: .1rem #000000 solid;
   width: 3rem;
   height: 3rem;
@@ -166,6 +195,13 @@ a:hover {
   position: absolute;
   right: .5rem;
   top: 1.5rem;
+  text-align: center;
+}
+
+.sidebar-close-button:hover {
+  border: .1rem #404040 solid;
+  color: white;
+  background-color: #404040;
 }
 
 /* Product Details */
@@ -179,6 +215,10 @@ a:hover {
 
 .details-image {
   flex: 2 1 60rem;
+}
+
+.details-image img {
+  border-radius: 10px;
 }
 
 .details-image img {
@@ -207,6 +247,11 @@ a:hover {
 
 .details-info li, .details-action li {
   margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.details-info div {
+  margin-top: .7rem;
 }
 
 .back-to-result {
@@ -294,11 +339,28 @@ a:hover {
 
 .cart-image {
   flex: 1 1;
+  align-self: center;
+}
+
+.cart-image img {
+  border-radius: 5px;
 }
 
 .cart-name {
   flex: 8 1;
   margin-left: 2rem;
+}
+
+.cart-name div {
+  padding: .3rem;
+}
+
+.cart-name div select {
+  padding-right: 1rem;
+}
+
+.cart-name div button {
+  margin-left: 1rem;
 }
 
 .cart-price {

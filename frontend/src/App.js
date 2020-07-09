@@ -47,7 +47,7 @@ const App = () => {
             <button onClick={openMenu}>
               &#9776;
             </button>
-            <Link to='/'>imma-zone</Link>
+            <Link to='/'>imma-Zone</Link>
           </div>
           <div className="header-links">
             {
