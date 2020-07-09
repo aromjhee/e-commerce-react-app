@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import config from './config.js';
 
 const getToken = user => {
-  const { id, name, email, isAdmin } = user;
+  const { _id: id, name, email, isAdmin } = user;
   return jwt.sign(
     { id, name, email, isAdmin }, 
     config.JWT_SECRET, 

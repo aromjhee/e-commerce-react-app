@@ -18,7 +18,7 @@ import ProfileScreen from './components/ProfileScreen';
 const App = () => {
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
-  console.log('---------', userInfo)
+
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open")
   }
@@ -67,23 +67,10 @@ const App = () => {
           <div className="content">
             <Route exact path='/' component={HomeScreen}></Route>
             <Route path='/products' component={NewProductScreen}></Route>
-            {/* <Route 
-              path='/profile' 
-              render={props => <ProfileScreen {...props}
-                setStateUserLogin={setStateUserLogin} />}>  
-            </Route> */}
             <Route path="/profile" component={ProfileScreen} />
             <Route path='/shipping' component={ShippingScreen}></Route>
             <Route path='/payment' component={PaymentScreen}></Route>
             <Route path='/place-order' component={PlaceOrderScreen}></Route>
-            {/* <Route 
-              path='/log-in' 
-              render={(props) => (<LoginScreen {...props} setStateUserLogin={setStateUserLogin} />)} >
-            </Route>
-            <Route 
-              path='/register' 
-              render={(props) => (<RegisterScreen {...props} setStateUserLogin={setStateUserLogin} />)} >
-            </Route> */}
             <Route path="/log-in" component={LoginScreen} />
             <Route path="/register" component={RegisterScreen} />
             <Route path='/cart/:id?' component={CartScreen}></Route>

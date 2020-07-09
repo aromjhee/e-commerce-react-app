@@ -79,7 +79,11 @@ const RegisterScreen = props => {
               type='submit' 
               className='button primary full-width'>Register</button>
           </li>
-            Already have an account? <Link to={redirect === '/' ? 'log-in' : `log-in?redirect=${redirect}`}>Log In</Link>
+            Already have an account? 
+            <Link 
+              to={redirect === '/' ? 'log-in' : `log-in?redirect=${redirect}`}>
+                Log In
+            </Link>
         </ul>
       </form>
     </div>

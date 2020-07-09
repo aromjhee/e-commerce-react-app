@@ -55,12 +55,12 @@ const LoginScreen = props => {
             <button type='submit' className='button primary full-width'>
               Log In</button>
           </li>
-          <li>New to Imma-Zone?</li>
+          <li>New to imma-Zone?</li>
           <li>
             <Link 
               to={redirect === '/' ? 'register' : `register?redirect=${redirect}`}
               className='button text-center secondary'>
-                  Create your Imma-zone account
+                  Create your imma-Zone account
             </Link>
           </li>
         </ul>

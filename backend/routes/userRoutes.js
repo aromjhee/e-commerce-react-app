@@ -29,7 +29,7 @@ router.post('/log-in', async (req, res) => {
   });
 
   if (logInUser) {
-    const { id, name, email, isAdmin } = logInUser;
+    const { _id: id, name, email, isAdmin } = logInUser;
     res.send({
       id,
       name,
@@ -47,7 +47,7 @@ router.post('/register', async (req, res) => {
   const user = new User({ name, email, password });
   const newUser = await user.save();
   if (newUser) {
-    const { id, name, email, isAdmin } = newUser;
+    const { _id: id, name, email, isAdmin } = newUser;
     res.send({
       id,
       name,
