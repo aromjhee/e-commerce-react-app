@@ -45,9 +45,9 @@ const ShippingScreen = props => {
                 onChange={e => setCity(e.target.value)} />
             </li>
             <li>
-              <label htmlFor='postal'>Postal Code</label>
+              <label htmlFor='postalCode'>Postal Code</label>
               <input
-                type='text'
+                type='number'
                 name='postalCode'
                 id='postalCode'
                 value={postalCode}

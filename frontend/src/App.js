@@ -18,7 +18,6 @@ import ProfileScreen from './components/ProfileScreen';
 const App = () => {
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
-  console.log(userInfo)
 
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open")
