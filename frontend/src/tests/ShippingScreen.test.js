@@ -2,11 +2,8 @@ import React from 'react';
 import * as redux from 'react-redux'
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { within } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
 
 import ShippingScreen from '../components/ShippingScreen';
-import { act } from 'react-dom/test-utils';
 
 describe('ShippingScreen component', () => {
   beforeEach(() => {

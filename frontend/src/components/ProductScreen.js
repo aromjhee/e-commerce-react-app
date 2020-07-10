@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { detailsProducts } from '../actions/productActions';
@@ -10,7 +10,10 @@ const ProductScreen = props => {
   const productDetails = useSelector(state => state.productDetails);
   const { product, loading, error } = productDetails;
   const dispatch = useDispatch();
-  const { id } = useParams();
+  // couldn't get test to pass
+  // when using useParams from react-router-dom
+  // const { id } = useParams();
+  const id = props.match.params.id;
 
   useEffect(() => {
     dispatch(detailsProducts(id));
