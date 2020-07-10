@@ -40,7 +40,8 @@ const LoginScreen = props => {
             <input 
               type='email' 
               name='email' 
-              id='email' 
+              id='email'
+              value={email}
               onChange={e => setEmail(e.target.value)} />
           </li>
           <li>
@@ -49,6 +50,7 @@ const LoginScreen = props => {
               type='password'
               name='password'
               id='password'
+              value={password}
               onChange={e => setPassword(e.target.value)} />
           </li>
           <li>

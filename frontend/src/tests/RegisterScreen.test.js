@@ -70,6 +70,11 @@ describe('RegisterScreen component', () => {
     expect(input.value).toBe('1234');
   });
 
+  it(`renders button with text 'Register'`, () => {
+    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.queryByText(/Register/)).toBeInTheDocument();
+  });
+
   it('Form should call dispatch when submitted', async () => {
     const useDispatchSpy = jest.spyOn(redux, 'useDispatch');
 
