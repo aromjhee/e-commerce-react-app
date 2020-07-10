@@ -58,4 +58,8 @@ describe('App component', () => {
     const { getByText } = within(screen.getAllByRole('link')[8])
     expect(getByText(/Github/)).toBeInTheDocument();
   });
+
+  it(`renders products`, () => {
+    expect(screen.getByText(/AirForce 1/)).toBeInTheDocument();
+  })
 });
