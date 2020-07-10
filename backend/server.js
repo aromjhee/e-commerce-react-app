@@ -19,18 +19,18 @@ mongoose.connect(mongodbUrl, {
 }).catch(error => console.log(error.reason));
 
 const app = express();
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV === 'production') {
-  // Serve static files from the React frontend app
-  app.use(express.static(path.join(__dirname, 'frontend/build')));
-  // Anything that doesn't match the above, send back index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
-  })
-} 
+// if (process.env.NODE_ENV === 'production') {
+//   // Serve static files from the React frontend app
+//   app.use(express.static(path.join(__dirname, 'frontend/build')));
+//   // Anything that doesn't match the above, send back index.html
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
+//   })
+// } 
 
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
