@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start:development": "nodemon --watch backend --exec babel-node server.js",
-    "start": "node server.js"
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
