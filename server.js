@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
+import cors from 'cors';
 
 import config from './config.js';
 import userRoutes from './routes/userRoutes.js';
@@ -23,6 +24,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
+// for when attempting to deploy to one heroku app
 // if (process.env.NODE_ENV === 'production') {
 //   // Serve static files from the React frontend app
 //   app.use(express.static(path.join(__dirname, 'frontend/build')));
@@ -32,9 +34,22 @@ app.use(bodyParser.json());
 //   })
 // } 
 
+// let url = 'http://localhost:3000';
+let url;
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV === 'development') {
+  url = 'http://localhost:3000';
+} else {
+  url = 'https://e-commerce-5555-frontend.herokuapp.com'
+}
+
+// app.use(cors({ origin: '*' }));
+app.use(cors({ origin: url }));
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 
+
+// for when mongodb wasn't set up
 // app.get('/api/products/:id', (req, res) => {
 //   const productId = req.params.id;
 //   const product = data.products.find(x => x.id === Number.parseInt(productId));

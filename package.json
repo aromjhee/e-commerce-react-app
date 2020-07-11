@@ -21,8 +21,8 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "start:development": "nodemon --watch backend --exec babel-node backend/server.js",
-    "start": "node backend/server.js"
+    "start:development": "nodemon --watch backend --exec babel-node server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

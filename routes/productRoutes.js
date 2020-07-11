@@ -1,5 +1,4 @@
 import express from 'express';
-import cors from 'cors';
 
 import Product from '../models/productModel.js';
 
@@ -12,7 +11,7 @@ router.get('/', async (req, res) => {
   res.send(products);
 });
 
-router.get('/:id', cors(), async (req, res) => {
+router.get('/:id', async (req, res) => {
   const product = await Product.findById(req.params.id);
   
   if (product) {
@@ -22,7 +21,7 @@ router.get('/:id', cors(), async (req, res) => {
   }
 });
 
-router.post('/', cors(), isAuth, isAdmin, async (req, res) => {
+router.post('/', isAuth, isAdmin, async (req, res) => {
   const { name, price, image, brand, category, 
         countInStock, description } = req.body;
 
@@ -38,7 +37,7 @@ router.post('/', cors(), isAuth, isAdmin, async (req, res) => {
   return res.status(500).send({ message: 'Error in Creating New Product.' })
 });
 
-router.put('/:id', cors(), isAuth, isAdmin, async (req, res) => {
+router.put('/:id', isAuth, isAdmin, async (req, res) => {
   const productId = req.params.id;
   let product = await Product.findById(productId);
 
@@ -63,7 +62,7 @@ router.put('/:id', cors(), isAuth, isAdmin, async (req, res) => {
   return res.status(500).send({ message: 'Error in Updating Product.' })
 });
 
-router.delete('/:id', cors(), isAuth, isAdmin, async (req, res) => {
+router.delete('/:id', isAuth, isAdmin, async (req, res) => {
   const deletedProduct = await Product.findById(req.params.id);
   if (deletedProduct) {
     await deletedProduct.remove();
