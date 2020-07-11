@@ -1,10 +1,12 @@
 import express from 'express';
+import cors from 'cors';
+
 import User from '../models/userModel.js';
 import { getToken } from '../util.js';
 
 const router = express.Router();
 
-router.get('/createadmin', async (req, res) => {
+router.get('/createadmin', cors(), async (req, res) => {
   try {
     const user = new User({
       name: 'admin',
@@ -20,7 +22,7 @@ router.get('/createadmin', async (req, res) => {
   }
 });
 
-router.post('/log-in', async (req, res) => {
+router.post('/log-in', cors(), async (req, res) => {
   const { email, password } = req.body;
 
   const logInUser = await User.findOne({
@@ -42,7 +44,7 @@ router.post('/log-in', async (req, res) => {
   }
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', cors(), async (req, res) => {
   const { name, email, password } = req.body;
   const user = new User({ name, email, password });
   const newUser = await user.save();
