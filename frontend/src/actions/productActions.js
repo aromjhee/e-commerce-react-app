@@ -1,9 +1,16 @@
 import { PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL } from "../constant/productConstants.js";
 
+let url;
+if (process.env.NODE_ENV === 'development') {
+  url = 'https://localhost:8080';
+} else {
+  url = 'https://e-commerce-5555.herokuapp.com'
+}
+
 const listProducts = () => async dispatch => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST});
-    const res = await fetch(`/api/products`);
+    const res = await fetch(`${url}/api/products`);
     if (res.ok) {
       const data = await res.json();
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
@@ -21,7 +28,7 @@ const saveProduct = product => async (dispatch, getState) => {
     let res;
 
     if (!product._id) {
-      res = await fetch('/api/products', {
+      res = await fetch(`${url}/api/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,7 +41,7 @@ const saveProduct = product => async (dispatch, getState) => {
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
       }
     } else {
-      res = await fetch(`/api/products/${product._id}`, {
+      res = await fetch(`${url}/api/products/${product._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +63,7 @@ const saveProduct = product => async (dispatch, getState) => {
 const detailsProducts = (productId) => async dispatch => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
-    const res = await fetch(`/api/products/${productId}`);
+    const res = await fetch(`${url}/api/products/${productId}`);
     if (res.ok) {
       const data = await res.json();
       dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data })
@@ -71,7 +78,7 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     const { userLogin: { userInfo } } = getState();
 
     dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
-    const res = await fetch(`/api/products/${productId}`, {
+    const res = await fetch(`${url}/api/products/${productId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${userInfo.token}`

@@ -1,10 +1,17 @@
 import Cookie from 'js-cookie';
 import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT_SUCCESS } from '../constant/userConstants';
 
+let url;
+if (process.env.NODE_ENV === 'development') {
+  url = 'https://localhost:8080';
+} else {
+  url = 'https://e-commerce-5555.herokuapp.com'
+}
+
 const logIn = (email, password) => async dispatch => {
   dispatch({ type: USER_LOGIN_REQUEST, payload: {email, password}});
   try {
-    const res = await fetch('/api/users/log-in', {
+    const res = await fetch(`${url}/api/users/log-in`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -29,7 +36,7 @@ const logOut = () => dispatch => {
 const register = (name, email, password) => async dispatch => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
   try {
-    const res = await fetch('/api/users/register', {
+    const res = await fetch(`${url}/api/users/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
