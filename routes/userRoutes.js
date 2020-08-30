@@ -24,7 +24,7 @@ router.get('/createadmin', async (req, res) => {
 router.post('/log-in', async (req, res) => {
   const { email, password } = req.body;
 
-  const findUser = await User.findOne({ email }, (err, user) => {
+  const findUser = await User.findOne({ email }, async (err, user) => {
     if (err) {
       console.log('Failed to Login because: ', err)
       res.send({ msg: 'Failed to Login'})
