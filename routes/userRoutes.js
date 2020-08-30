@@ -24,23 +24,49 @@ router.get('/createadmin', async (req, res) => {
 router.post('/log-in', async (req, res) => {
   const { email, password } = req.body;
 
-  const logInUser = await User.findOne({
-    email,
-    password,
-  });
+  const findUser = await User.findOne({ email }, (err, user) => {
+    if (err) {
+      console.log('Failed to Login because: ', err)
+      res.send({ msg: 'Failed to Login'})
+    }
+    if (user && user.password === password) {
+      const logInUser = await User.findOne({
+        email,
+        password,
+      });
 
-  if (logInUser) {
-    const { _id: id, name, email, isAdmin } = logInUser;
-    res.send({
-      id,
-      name,
-      email,
-      isAdmin,
-      token: getToken(logInUser)
-    })
-  } else {
-    res.status(401).send({ msg: 'Invalid Email or Password' })
-  }
+      if (logInUser) {
+        const { _id: id, name, email, isAdmin } = logInUser;
+        res.send({
+          id,
+          name,
+          email,
+          isAdmin,
+          token: getToken(logInUser)
+        })
+      } else {
+        res.status(401).send({ msg: 'Invalid Email or Password' })
+      }
+    }
+  })
+  // Keep the code below
+  // const logInUser = await User.findOne({
+  //   email,
+  //   password,
+  // });
+
+  // if (logInUser) {
+  //   const { _id: id, name, email, isAdmin } = logInUser;
+  //   res.send({
+  //     id,
+  //     name,
+  //     email,
+  //     isAdmin,
+  //     token: getToken(logInUser)
+  //   })
+  // } else {
+  //   res.status(401).send({ msg: 'Invalid Email or Password' })
+  // }
 });
 
 router.post('/register', async (req, res) => {
