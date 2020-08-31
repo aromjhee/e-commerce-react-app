@@ -27,7 +27,7 @@ let url;
 if (process.env.NODE_ENV === 'development') {
   url = process.env.LOCAL_URL
 } else {
-  url = process.env.HEROKU_URL
+  url = process.env.PROD_URL
 }
 
 app.use(cors({ origin: url }));
